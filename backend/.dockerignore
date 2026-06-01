@@ -1,0 +1,9 @@
+.gradle/
+build/
+bin/
+out/
+uploads/
+*.db
+*.db-shm
+*.db-wal
+*.log
