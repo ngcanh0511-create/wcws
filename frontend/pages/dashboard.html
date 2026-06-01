@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lịch thi đấu — WCPL</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <div class="container-xl py-4">
+    <section class="dashboard-hero">
+      <div class="row align-items-end g-4">
+        <div class="col-lg-7">
+          <div class="hero-kicker mb-2">USA • Canada • Mexico</div>
+          <h1>World Cup<br>Prediction League</h1>
+          <p class="text-muted mb-0 mt-3">
+            Theo dõi lịch đấu, chọn kèo và leo bảng xếp hạng cùng nhóm bạn.
+          </p>
+        </div>
+        <div class="col-lg-5">
+          <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
+            <div class="hero-stat">
+              <strong id="hero-total-matches">--</strong>
+              <span>Trận đấu</span>
+            </div>
+            <div class="hero-stat">
+              <strong id="hero-next-match">--</strong>
+              <span>Trận gần nhất</span>
+            </div>
+            <div class="hero-stat">
+              <strong id="hero-live-count">--</strong>
+              <span>Đang live</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="row g-4">
+
+      <!-- ── Cột trái: Lịch thi đấu ─────────────────────────────── -->
+      <div class="col-lg-8">
+
+        <!-- Bộ lọc -->
+        <div class="filter-bar d-flex align-items-center gap-3 mb-3 flex-wrap">
+          <h5 class="mb-0 fw-bold section-title">Lịch thi đấu</h5>
+          <div class="ms-auto d-flex gap-2">
+            <input type="date" id="filter-date" class="form-control form-control-sm"
+                   style="width:160px;">
+            <select id="filter-status" class="form-select form-select-sm" style="width:140px;">
+              <option value="">Tất cả</option>
+              <option value="SCHEDULED">Sắp diễn ra</option>
+              <option value="FINISHED">Đã kết thúc</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Danh sách trận -->
+        <div id="match-list">
+          <div class="text-center py-5 text-muted">
+            <div class="spinner-border spinner-border-sm me-2"></div>Đang tải...
+          </div>
+        </div>
+
+        <!-- Phân trang -->
+        <div id="pagination" class="d-flex justify-content-center gap-2 mt-3"></div>
+      </div>
+
+      <!-- ── Cột phải: Sidebar ─────────────────────────────────── -->
+      <div class="col-lg-4">
+
+        <!-- Credit box -->
+        <div class="wcpl-card mb-4 p-3">
+          <div class="text-muted small mb-1"><i class="bi bi-coin me-1"></i>Credit của bạn</div>
+          <div class="credit-balance" id="credit-display">—</div>
+        </div>
+
+        <!-- BXH mini -->
+        <div class="wcpl-card mb-4">
+          <div class="wcpl-card-header"><i class="bi bi-trophy me-2"></i>Top 5 bảng xếp hạng</div>
+          <div id="mini-leaderboard" class="p-2">
+            <div class="text-center py-3 text-muted small">Đang tải...</div>
+          </div>
+          <div class="p-2 border-top" style="border-color: var(--wcpl-border) !important;">
+            <a href="/pages/leaderboard.html" class="btn btn-sm btn-outline-secondary w-100">
+              Xem đầy đủ →
+            </a>
+          </div>
+        </div>
+
+        <!-- Activity feed -->
+        <div class="wcpl-card">
+          <div class="wcpl-card-header"><i class="bi bi-activity me-2"></i>Hoạt động gần đây</div>
+          <div id="activity-feed" class="p-3">
+            <div class="text-center py-3 text-muted small">Đang tải...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/services/storage.js"></script>
+  <script src="/js/services/api.js"></script>
+  <script src="/js/services/auth.js"></script>
+  <script src="/js/utils/auth-guard.js"></script>
+  <script src="/js/utils/date.js"></script>
+  <script src="/js/utils/format.js"></script>
+  <script src="/js/components/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/pages/dashboard.js"></script>
+</body>
+</html>

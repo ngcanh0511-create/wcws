@@ -1,0 +1,38 @@
+# Java / Spring Boot
+backend/build/
+backend/.gradle/
+backend/.idea/
+backend/bin/
+backend/*.iml
+backend/out/
+
+# SQLite database (local only)
+*.db
+*.db-shm
+*.db-wal
+
+# Upload files (local only)
+backend/uploads/
+~/wcpl/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.claude/
+.vscode/settings.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

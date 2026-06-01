@@ -1,0 +1,141 @@
+/* ── Betting UI — sportsbook style ─────────────────────────────────── */
+
+/* Kèo panel */
+.betting-panel {
+  background: var(--wcpl-card-bg);
+  border: 1px solid var(--wcpl-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.betting-panel-header {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.16), rgba(124, 58, 237, 0.12));
+  border-bottom: 1px solid var(--wcpl-border);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #BAE6FD;
+}
+
+/* Mỗi kèo */
+.bet-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--wcpl-border);
+  cursor: pointer;
+  transition: background 0.15s;
+  gap: 0.5rem;
+}
+
+.bet-line:last-child { border-bottom: none; }
+
+.bet-line:hover { background: rgba(255,255,255,0.04); }
+
+.bet-line.selected {
+  background: rgba(56, 189, 248, 0.12);
+  border-left: 3px solid var(--wcpl-primary);
+}
+
+.bet-line.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bet-line-desc {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #c5cdd8;
+}
+
+.bet-line-odds {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--wcpl-highlight);
+  min-width: 44px;
+  text-align: right;
+}
+
+/* Nút đặt cược */
+.bet-slip {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.bet-slip-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #BAE6FD;
+  margin-bottom: 0.5rem;
+}
+
+.bet-amount-input {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(56,189,248,0.36) !important;
+  color: #e8edf4 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.bet-amount-input:focus {
+  border-color: var(--wcpl-primary) !important;
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.18) !important;
+}
+
+.potential-win {
+  font-size: 0.8rem;
+  color: var(--wcpl-text-muted);
+}
+
+.potential-win strong {
+  color: #7dd3fc;
+  font-size: 0.95rem;
+}
+
+/* Quick bet buttons */
+.quick-bet-btns {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quick-bet-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--wcpl-border);
+  color: #c5cdd8;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.quick-bet-btn:hover {
+  background: rgba(56,189,248,0.16);
+  border-color: var(--wcpl-primary);
+  color: #fff;
+}
+
+/* Result badge trên kèo */
+.line-result-badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Prediction history */
+.prediction-row {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--wcpl-border);
+}
+
+.prediction-row:last-child { border-bottom: none; }
+
+.credit-change-positive { color: #6ee89e; font-weight: 700; }
+.credit-change-negative { color: #f87272; font-weight: 700; }

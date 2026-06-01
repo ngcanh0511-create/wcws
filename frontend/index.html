@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCPL — World Cup Prediction League</title>
+  <script>
+    // Redirect về login hoặc dashboard
+    const token = localStorage.getItem('wcpl_access_token');
+    window.location.href = token ? '/pages/dashboard.html' : '/pages/login.html';
+  </script>
+</head>
+<body></body>
+</html>

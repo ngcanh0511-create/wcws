@@ -1,0 +1,590 @@
+/* ── Global Variables ──────────────────────────────────────────────── */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root {
+  --wcpl-primary: #198754;
+  --wcpl-gold: #ffc107;
+  --wcpl-dark: #1a1a2e;
+  --wcpl-card-bg: #16213e;
+  --wcpl-border: rgba(255, 255, 255, 0.08);
+  --wcpl-text-muted: #8a9bb5;
+  --sidebar-w: 260px;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+body {
+  background-color: #0f1116;
+  color: #e8edf4;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* ── Card ──────────────────────────────────────────────────────────── */
+.wcpl-card {
+  background: var(--wcpl-card-bg);
+  border: 1px solid var(--wcpl-border);
+  border-radius: 12px;
+}
+
+.wcpl-card-header {
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--wcpl-border);
+  border-radius: 12px 12px 0 0 !important;
+  padding: 0.875rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Login Page ────────────────────────────────────────────────────── */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f1116 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--wcpl-card-bg);
+  border: 1px solid var(--wcpl-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+.login-logo {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--wcpl-gold);
+}
+
+/* ── Form Controls ─────────────────────────────────────────────────── */
+.form-control, .form-select {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--wcpl-border);
+  color: #e8edf4;
+  border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+  background: rgba(255,255,255,0.09);
+  border-color: var(--wcpl-primary);
+  color: #e8edf4;
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);
+}
+
+.form-control::placeholder {
+  color: var(--wcpl-text-muted);
+}
+
+.form-label {
+  color: #c5cdd8;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+.btn-wcpl-primary {
+  background: var(--wcpl-primary);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  transition: opacity 0.15s;
+}
+
+.btn-wcpl-primary:hover { opacity: 0.88; color: #fff; }
+.btn-wcpl-primary:disabled { opacity: 0.5; }
+
+/* ── Navbar ────────────────────────────────────────────────────────── */
+.navbar {
+  border-bottom: 1px solid var(--wcpl-border);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-brand {
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Match Card ────────────────────────────────────────────────────── */
+.match-card {
+  background: var(--wcpl-card-bg);
+  border: 1px solid var(--wcpl-border);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: border-color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.match-card:hover {
+  border-color: var(--wcpl-primary);
+  color: inherit;
+}
+
+.team-flag {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--wcpl-border);
+}
+
+.match-score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--wcpl-gold);
+  min-width: 64px;
+  text-align: center;
+}
+
+.team-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  max-width: 90px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ── Leaderboard ───────────────────────────────────────────────────── */
+.rank-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.rank-1 { background: #ffd700; color: #000; }
+.rank-2 { background: #c0c0c0; color: #000; }
+.rank-3 { background: #cd7f32; color: #fff; }
+.rank-other { background: var(--wcpl-border); color: var(--wcpl-text-muted); }
+
+/* ── Achievement Badge ─────────────────────────────────────────────── */
+.achievement-card {
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  border: 1px solid var(--wcpl-border);
+  background: var(--wcpl-card-bg);
+  transition: transform 0.2s;
+}
+
+.achievement-card:hover { transform: translateY(-2px); }
+
+.achievement-card.locked {
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Activity Feed ─────────────────────────────────────────────────── */
+.feed-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--wcpl-border);
+  font-size: 0.875rem;
+}
+
+.feed-item:last-child { border-bottom: none; }
+
+/* ── Credit Display ────────────────────────────────────────────────── */
+.credit-balance {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--wcpl-gold);
+}
+
+/* ── Spinner ───────────────────────────────────────────────────────── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,17,22,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+}
+
+/* ── Responsive Utilities ──────────────────────────────────────────── */
+@media (max-width: 576px) {
+  .login-card { padding: 1.75rem 1.25rem; }
+  .match-score { font-size: 1.1rem; }
+  .team-flag { width: 28px; height: 28px; }
+}
+
+/* Modern World Cup 2026 dashboard theme */
+:root {
+  --wcpl-bg: #0F172A;
+  --wcpl-primary: #38BDF8;
+  --wcpl-secondary: #7C3AED;
+  --wcpl-highlight: #F97316;
+  --wcpl-gold: #FBBF24;
+  --wcpl-dark: #0F172A;
+  --wcpl-card-bg: rgba(30, 41, 59, 0.86);
+  --wcpl-card-solid: #1E293B;
+  --wcpl-border: rgba(148, 163, 184, 0.22);
+  --wcpl-text-muted: #94A3B8;
+  --wcpl-text: #FFFFFF;
+  --wcpl-shadow: 0 18px 50px rgba(2, 6, 23, 0.34);
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.86)),
+    url('/assets/img/stadium-night.jpg') center / cover fixed no-repeat;
+  color: var(--wcpl-text);
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.18), transparent 28%),
+    radial-gradient(circle at 86% 8%, rgba(124, 58, 237, 0.16), transparent 30%),
+    linear-gradient(rgba(15, 23, 42, 0.24), rgba(15, 23, 42, 0.5));
+  backdrop-filter: blur(5px);
+}
+
+.container-xl {
+  position: relative;
+}
+
+.navbar.bg-dark {
+  background: rgba(15, 23, 42, 0.86) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 12px 34px rgba(2, 6, 23, 0.28);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 800;
+}
+
+.navbar-brand::after {
+  content: "2026";
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.08rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.16);
+  color: var(--wcpl-primary);
+  font-size: 0.68rem;
+  vertical-align: middle;
+}
+
+.navbar .nav-link {
+  color: rgba(226, 232, 240, 0.76) !important;
+  border-radius: 999px;
+  padding-inline: 0.78rem !important;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  background: rgba(56, 189, 248, 0.14);
+  color: #fff !important;
+}
+
+.dropdown-menu {
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid var(--wcpl-border);
+  box-shadow: var(--wcpl-shadow);
+}
+
+.dropdown-item {
+  color: #E2E8F0;
+}
+
+.dropdown-item:hover {
+  color: #fff;
+  background: rgba(56, 189, 248, 0.14);
+}
+
+.wcpl-card,
+.match-card,
+.betting-panel,
+.achievement-card {
+  background: var(--wcpl-card-bg);
+  border: 1px solid var(--wcpl-border);
+  box-shadow: var(--wcpl-shadow);
+  backdrop-filter: blur(16px);
+}
+
+.wcpl-card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.wcpl-card-header {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.13), rgba(124, 58, 237, 0.1));
+  border-bottom: 1px solid var(--wcpl-border);
+  color: #E0F2FE;
+  letter-spacing: 0;
+}
+
+.form-control,
+.form-select {
+  background-color: rgba(15, 23, 42, 0.72);
+  border-color: rgba(148, 163, 184, 0.24);
+  color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: rgba(15, 23, 42, 0.88);
+  border-color: var(--wcpl-primary);
+  box-shadow: 0 0 0 0.22rem rgba(56, 189, 248, 0.18);
+}
+
+.btn-wcpl-primary,
+.btn-success {
+  background: linear-gradient(135deg, var(--wcpl-primary), var(--wcpl-secondary)) !important;
+  border: 0 !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(56, 189, 248, 0.18);
+}
+
+.btn-outline-secondary,
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-warning,
+.btn-outline-light {
+  border-color: rgba(148, 163, 184, 0.28);
+  color: #E2E8F0;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-primary:hover,
+.btn-outline-success:hover,
+.btn-outline-warning:hover,
+.btn-outline-light:hover {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: var(--wcpl-primary);
+  color: #fff;
+}
+
+.table-dark {
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+  --bs-table-hover-bg: rgba(56, 189, 248, 0.08);
+  color: #E2E8F0;
+}
+
+.table thead th {
+  color: #BAE6FD;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom-color: rgba(148, 163, 184, 0.24);
+}
+
+.table td {
+  border-color: rgba(148, 163, 184, 0.12);
+  vertical-align: middle;
+}
+
+.match-card {
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.62);
+  background: rgba(30, 41, 59, 0.96);
+}
+
+.team-flag {
+  width: 42px;
+  height: 42px;
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 7px 18px rgba(2, 6, 23, 0.22);
+}
+
+.team-name {
+  color: #F8FAFC;
+  font-size: 0.92rem;
+}
+
+.match-score {
+  color: var(--wcpl-highlight);
+  font-size: 1.55rem;
+}
+
+.credit-balance {
+  color: var(--wcpl-highlight);
+  font-size: 2rem;
+}
+
+.rank-badge {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.rank-other {
+  background: rgba(148, 163, 184, 0.14);
+  color: #CBD5E1;
+}
+
+.feed-item {
+  border-bottom-color: rgba(148, 163, 184, 0.14);
+}
+
+.page-title,
+.section-title {
+  color: #fff;
+  font-weight: 800;
+}
+
+.dashboard-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 1.35rem;
+  background:
+    linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(124, 58, 237, 0.2)),
+    rgba(30, 41, 59, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow: var(--wcpl-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.dashboard-hero::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -120px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.2);
+  filter: blur(34px);
+}
+
+.dashboard-hero h1 {
+  position: relative;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.dashboard-hero .hero-kicker {
+  color: #BAE6FD;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+.hero-stat {
+  min-width: 130px;
+  padding: 0.78rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.54);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.hero-stat strong {
+  display: block;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.hero-stat span {
+  color: var(--wcpl-text-muted);
+  font-size: 0.78rem;
+}
+
+.filter-bar {
+  padding: 0.85rem;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.46);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.text-muted {
+  color: var(--wcpl-text-muted) !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .navbar .nav-link {
+    border-radius: 12px;
+  }
+
+  .dashboard-hero {
+    border-radius: 18px;
+  }
+}
+
+.login-page {
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.76)),
+    url('/assets/img/stadium-night.jpg') center / cover no-repeat;
+}
+
+.login-card {
+  background: rgba(30, 41, 59, 0.88);
+  border: 1px solid var(--wcpl-border);
+  box-shadow: var(--wcpl-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.login-title {
+  color: var(--wcpl-primary);
+}
+
+.modal-content {
+  background: rgba(30, 41, 59, 0.96) !important;
+  border: 1px solid var(--wcpl-border) !important;
+  box-shadow: var(--wcpl-shadow);
+}
+
+.alert-secondary {
+  background: rgba(15, 23, 42, 0.64);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: #E2E8F0;
+}
+
+.badge.bg-info,
+.badge.bg-primary,
+.badge.bg-success,
+.badge.bg-danger,
+.badge.bg-secondary {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}

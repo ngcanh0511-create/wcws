@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý Trận đấu — Admin</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <div class="container-xl py-4">
+    <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+      <h5 class="fw-bold mb-0"><i class="bi bi-calendar2-week me-2"></i>Quản lý Trận đấu</h5>
+      <button id="sync-matches-btn" class="btn btn-success btn-sm" type="button" onclick="syncMatches()">
+        Đồng bộ lịch
+      </button>
+    </div>
+
+    <div class="wcpl-card">
+      <div id="match-table">
+        <div class="text-center py-5 text-muted">
+          <div class="spinner-border spinner-border-sm me-2"></div>Đang tải...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Nhập kèo -->
+  <div class="modal fade" id="betting-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:var(--wcpl-card-bg); border:1px solid var(--wcpl-border)">
+        <div class="modal-header border-0">
+          <h6 class="modal-title">Dán hoặc chỉnh sửa kèo trận đấu</h6>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="betting-match-id">
+          <div class="mb-3">
+            <label class="form-label">Dán nội dung kèo</label>
+            <textarea id="betting-content" class="form-control font-monospace" rows="12"
+              placeholder="MATCH=1001&#10;&#10;Argentina Win|1.8&#10;Draw|3.2&#10;Brazil Win|4.5&#10;&#10;Over 2.5 Goals|2.1&#10;Under 2.5 Goals|1.7"></textarea>
+            <div class="form-text text-muted">
+              Nếu trận đã có kèo, nội dung cũ sẽ được hiển thị lại để chỉnh sửa.
+            </div>
+          </div>
+          <div class="alert alert-secondary small">
+            <strong>Định dạng:</strong><br>
+            <code>
+              MATCH=1001<br>
+              Argentina Win|1.8<br>
+              Draw|3.2<br>
+              Over 2.5 Goals|2.1<br>
+              Argentina Win|1.8|LINE=12 <span class="text-muted">(khi chỉnh kèo cũ)</span>
+            </code>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button class="btn btn-success" onclick="uploadBettingLines()">Lưu kèo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Nhập kết quả -->
+  <div class="modal fade" id="result-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content" style="background:var(--wcpl-card-bg); border:1px solid var(--wcpl-border)">
+        <div class="modal-header border-0">
+          <h6 class="modal-title">Nhập kết quả</h6>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="result-match-id">
+          <div id="result-match-name" class="small text-muted mb-3"></div>
+          <div class="row g-2">
+            <div class="col-6">
+              <label class="form-label small">Đội nhà</label>
+              <input type="number" id="home-score" class="form-control" min="0" value="0">
+            </div>
+            <div class="col-6">
+              <label class="form-label small">Đội khách</label>
+              <input type="number" id="away-score" class="form-control" min="0" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button class="btn btn-success" onclick="setResult()">Lưu kết quả</button>
+          <button class="btn btn-warning" onclick="setResultAndGrade()">Lưu + Chấm điểm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/services/storage.js"></script>
+  <script src="/js/services/api.js"></script>
+  <script src="/js/services/auth.js"></script>
+  <script src="/js/utils/auth-guard.js"></script>
+  <script src="/js/utils/date.js"></script>
+  <script src="/js/utils/format.js"></script>
+  <script src="/js/components/toast.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/pages/admin/matches.js"></script>
+</body>
+</html>

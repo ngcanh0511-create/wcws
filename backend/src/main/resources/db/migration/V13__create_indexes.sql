@@ -1,0 +1,9 @@
+CREATE INDEX idx_matches_date          ON matches(match_date);
+CREATE INDEX idx_matches_status        ON matches(status);
+CREATE INDEX idx_predictions_user      ON predictions(user_id);
+CREATE INDEX idx_predictions_match     ON predictions(match_id);
+CREATE INDEX idx_credit_tx_user        ON credit_transactions(user_id);
+CREATE INDEX idx_credit_tx_created     ON credit_transactions(created_at);
+CREATE INDEX idx_betting_lines_match   ON betting_lines(match_id);
+CREATE INDEX idx_activity_feed_user    ON activity_feed(user_id);
+CREATE INDEX idx_activity_feed_created ON activity_feed(created_at);
