@@ -12,10 +12,9 @@ WORKDIR /app
 RUN mkdir -p /data/wcpl/avatars
 
 ENV WCPL_DATA_DIR=/data/wcpl
-ENV SERVER_PORT=8080
 
 COPY --from=build /workspace/build/libs/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar /app/app.jar"]
