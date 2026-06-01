@@ -148,15 +148,17 @@ async function loadLeaderboard() {
     miniLb.innerHTML = top5.map((entry, i) => {
       const rank = i + 1;
       const rankClass = rank <= 3 ? `rank-${rank}` : 'rank-other';
+      const defaultAvatar = '/assets/avatars/defaults/default_1.png';
+      const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
       const avatarSrc = entry.avatarUrl
-        ? `http://localhost:8080${entry.avatarUrl}`
-        : '/assets/avatars/default_1.png';
+        ? `${apiBase}${entry.avatarUrl}`
+        : defaultAvatar;
 
       return `
         <div class="d-flex align-items-center gap-2 py-2 border-bottom" style="border-color:var(--wcpl-border) !important">
           <div class="rank-badge ${rankClass}">${rank}</div>
           <img src="${avatarSrc}" width="28" height="28" class="rounded-circle"
-               onerror="this.src='/assets/avatars/default_1.png'" alt="">
+               onerror="this.onerror=null;this.src='${defaultAvatar}'" alt="">
           <span class="small flex-1 text-truncate">${entry.displayName}</span>
           <span class="small text-warning fw-bold">${Format.credits(entry.credits)}</span>
         </div>`;

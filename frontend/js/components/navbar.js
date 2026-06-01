@@ -29,9 +29,11 @@ const Navbar = {
         </a>
       </li>`).join('');
 
+    const defaultAvatar = '/assets/avatars/defaults/default_1.png';
+    const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
     const avatarSrc = user?.avatarUrl
-      ? `http://localhost:8080${user.avatarUrl}`
-      : '/assets/avatars/defaults/default_1.png';
+      ? `${apiBase}${user.avatarUrl}`
+      : defaultAvatar;
 
     const html = `
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -55,7 +57,7 @@ const Navbar = {
                 <button class="btn btn-sm btn-outline-light dropdown-toggle d-flex align-items-center gap-2"
                         data-bs-toggle="dropdown">
                   <img src="${avatarSrc}" class="rounded-circle" width="28" height="28"
-                       onerror="this.src='/assets/avatars/default_1.png'" alt="avatar">
+                       onerror="this.onerror=null;this.src='${defaultAvatar}'" alt="avatar">
                   ${user?.displayName || 'User'}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">

@@ -22,9 +22,11 @@ async function init() {
 }
 
 function renderProfile(p) {
+  const defaultAvatar = '/assets/avatars/defaults/default_1.png';
+  const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
   const avatarSrc = p.avatarUrl
-    ? `http://localhost:8080${p.avatarUrl}`
-    : '/assets/avatars/default_1.png';
+    ? `${apiBase}${p.avatarUrl}`
+    : defaultAvatar;
 
   document.getElementById('avatar-img').src = avatarSrc;
   document.getElementById('display-name-text').textContent = p.displayName;
@@ -64,7 +66,8 @@ document.getElementById('avatar-upload').addEventListener('change', async (e) =>
 
   try {
     const result = await Api.upload('/api/v1/users/me/avatar', formData);
-    const src = `http://localhost:8080${result.avatarUrl}?t=${Date.now()}`;
+    const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
+    const src = `${apiBase}${result.avatarUrl}?t=${Date.now()}`;
     document.getElementById('avatar-img').src = src;
     Storage.updateUser({ ...Storage.getUser(), avatarUrl: result.avatarUrl });
     Toast.success('Cập nhật avatar thành công!');
@@ -120,8 +123,9 @@ async function setDefaultAvatar(filePath) {
   const filename = filePath.split('/').pop();
   try {
     const result = await Api.put(`/api/v1/users/me/avatar/default?name=${encodeURIComponent(filename)}`);
+    const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
     document.getElementById('avatar-img').src =
-      `http://localhost:8080${result.avatarUrl}?t=${Date.now()}`;
+      `${apiBase}${result.avatarUrl}?t=${Date.now()}`;
     Storage.updateUser({ ...Storage.getUser(), avatarUrl: result.avatarUrl });
     bootstrap.Modal.getInstance(document.getElementById('avatar-modal'))?.hide();
     Toast.success('Đã đổi avatar!');

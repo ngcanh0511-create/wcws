@@ -26,16 +26,18 @@ function renderPodium(top3) {
 
   const html = order.map((entry, i) => {
     if (!entry) return '';
+    const defaultAvatar = '/assets/avatars/defaults/default_1.png';
+    const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
     const avatarSrc = entry.avatarUrl
-      ? `http://localhost:8080${entry.avatarUrl}`
-      : '/assets/avatars/default_1.png';
+      ? `${apiBase}${entry.avatarUrl}`
+      : defaultAvatar;
     const isMe = entry.userId == currentUserId;
 
     return `
       <div class="col-4 text-center">
         <div class="mb-2">
           <img src="${avatarSrc}" width="52" height="52" class="rounded-circle border border-2 ${isMe ? 'border-warning' : 'border-secondary'}"
-               onerror="this.src='/assets/avatars/default_1.png'" alt="">
+               onerror="this.onerror=null;this.src='${defaultAvatar}'" alt="">
         </div>
         <div class="small fw-bold ${isMe ? 'text-warning' : ''}">${entry.displayName}</div>
         <div class="small text-muted">${Format.credits(entry.credits)}</div>
@@ -62,9 +64,11 @@ function renderTable(data) {
     const rank = i + 1;
     const rankClass = rank <= 3 ? `rank-${rank}` : 'rank-other';
     const isMe = entry.userId == currentUserId;
+    const defaultAvatar = '/assets/avatars/defaults/default_1.png';
+    const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
     const avatarSrc = entry.avatarUrl
-      ? `http://localhost:8080${entry.avatarUrl}`
-      : '/assets/avatars/default_1.png';
+      ? `${apiBase}${entry.avatarUrl}`
+      : defaultAvatar;
 
     const winRate = entry.totalBets > 0
       ? ((entry.wins / entry.totalBets) * 100).toFixed(1) + '%'
@@ -75,7 +79,7 @@ function renderTable(data) {
            style="border-color:var(--wcpl-border) !important">
         <div class="rank-badge ${rankClass}">${rank}</div>
         <img src="${avatarSrc}" width="36" height="36" class="rounded-circle"
-             onerror="this.src='/assets/avatars/default_1.png'" alt="">
+             onerror="this.onerror=null;this.src='${defaultAvatar}'" alt="">
         <div class="flex-1">
           <div class="fw-semibold ${isMe ? 'text-warning' : ''}">
             ${entry.displayName}${isMe ? ' <span class="badge bg-warning text-dark">Ban</span>' : ''}

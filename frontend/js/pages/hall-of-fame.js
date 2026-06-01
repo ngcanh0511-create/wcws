@@ -34,16 +34,18 @@ async function load() {
           '<i class="bi bi-award text-warning"></i>',
         ];
         const medal = medals[entry.finalRank - 1] || `#${entry.finalRank}`;
+        const defaultAvatar = '/assets/avatars/defaults/default_1.png';
+        const apiBase = window.APP_CONFIG?.apiBase || 'http://localhost:8080';
         const avatarSrc = entry.user?.avatarUrl
-          ? `http://localhost:8080${entry.user.avatarUrl}`
-          : '/assets/avatars/default_1.png';
+          ? `${apiBase}${entry.user.avatarUrl}`
+          : defaultAvatar;
 
         html += `
           <div class="d-flex align-items-center gap-3 p-3 border-bottom"
                style="border-color:var(--wcpl-border)!important">
             <div class="fs-4">${medal}</div>
             <img src="${avatarSrc}" width="40" height="40" class="rounded-circle"
-                 onerror="this.src='/assets/avatars/default_1.png'" alt="">
+                 onerror="this.onerror=null;this.src='${defaultAvatar}'" alt="">
             <div class="flex-1">
               <div class="fw-bold">${entry.user?.displayName || '-'}</div>
             </div>
